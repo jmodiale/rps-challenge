@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 
 class RPS < Sinatra::Base
+  enable :sessions
   configure :development do
     register Sinatra::Reloader
   end
@@ -16,6 +17,7 @@ class RPS < Sinatra::Base
   end
 
   get 'play' do
+    @name = session[:name]
     erb(:play)
   end
 
